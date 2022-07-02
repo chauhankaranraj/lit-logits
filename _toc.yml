@@ -1,0 +1,30 @@
+format: jb-book
+root: README.md
+parts:
+  - caption: Exploratory Data Analysis
+    chapters:
+    - file: aws/README.md
+      sections:
+        - file: aws/fraud-payment-demo.ipynb
+        - file: aws/deploy.md
+
+  - caption: Machine Learning
+    chapters:
+    - file: aws/README.md
+      sections:
+        - file: aws/fraud-payment-demo.ipynb
+        - file: aws/deploy.md
+
+  - caption: Deep Learning
+    chapters:
+    - file: aws/README.md
+      sections:
+        - file: aws/fraud-payment-demo.ipynb
+        - file: aws/deploy.md
+
+  - caption: Model Deployment
+    chapters:
+    - file: azure/README.md
+      sections:
+        - file: azure/fraud-payment-demo.ipynb
+        - file: azure/deploy.md
