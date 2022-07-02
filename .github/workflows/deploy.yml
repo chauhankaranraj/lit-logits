@@ -27,7 +27,7 @@ jobs:
         python -m pip install --upgrade pipenv wheel
     - name: Install dependencies
       run: |
-        pipenv install --deploy
+        pipenv install --deploy --system
 
     # Build the book
     - name: Build the book
