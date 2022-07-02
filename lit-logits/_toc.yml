@@ -3,21 +3,21 @@ root: README.md
 parts:
   - caption: Data Exploration
     chapters:
-    - file: exploratory-data-analysis/README.md
-    - file: exploratory-data-analysis/data-distribution/README.md
+    - file: exploratory-data-analysis/intro.md
+    - file: exploratory-data-analysis/data-distribution/intro.md
       sections:
         - file: exploratory-data-analysis/data-distribution/anderson-darling-test.ipynb
         - file: exploratory-data-analysis/data-distribution/kolmogorov-smirnov-test.ipynb
 
   - caption: Model Training
     chapters:
-    - file: deep-learning/README.md
+    - file: deep-learning/intro.md
       sections:
-        - file: deep-learning/generative-adversarial-networks/overview.md
+        - file: deep-learning/generative-adversarial-networks/intro.md
 
   - caption: Model Deployment
     chapters:
-    - file: model-deployment/README.md
+    - file: model-deployment/microservice.md
       sections:
         - file: model-deployment/aws/deploy.md
         - file: model-deployment/azure/deploy.md
