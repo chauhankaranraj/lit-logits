@@ -1,30 +1,24 @@
 format: jb-book
 root: README.md
 parts:
-  - caption: Exploratory Data Analysis
+  - caption: Data Exploration
     chapters:
-    - file: aws/README.md
+    - file: exploratory-data-analysis/README.md
+    - file: exploratory-data-analysis/data-distribution/README.md
       sections:
-        - file: aws/fraud-payment-demo.ipynb
-        - file: aws/deploy.md
+        - file: exploratory-data-analysis/data-distribution/anderson-darling-test.ipynb
+        - file: exploratory-data-analysis/data-distribution/kolmogorov-smirnov-test.ipynb
 
-  - caption: Machine Learning
+  - caption: Model Training
     chapters:
-    - file: aws/README.md
+    - file: deep-learning/README.md
       sections:
-        - file: aws/fraud-payment-demo.ipynb
-        - file: aws/deploy.md
-
-  - caption: Deep Learning
-    chapters:
-    - file: aws/README.md
-      sections:
-        - file: aws/fraud-payment-demo.ipynb
-        - file: aws/deploy.md
+        - file: deep-learning/generative-adversarial-networks/overview.md
 
   - caption: Model Deployment
     chapters:
-    - file: azure/README.md
+    - file: model-deployment/README.md
       sections:
-        - file: azure/fraud-payment-demo.ipynb
-        - file: azure/deploy.md
+        - file: model-deployment/aws/deploy.md
+        - file: model-deployment/azure/deploy.md
+        - file: model-deployment/openshift/deploy.md
