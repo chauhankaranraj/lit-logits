@@ -13,6 +13,7 @@ jupyterlab = "*"
 ghp-import = "*"
 matplotlib = "*"
 numpy = "*"
+scipy = "*"
 plotly = "*"
 
 [requires]
