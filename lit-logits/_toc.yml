@@ -1,6 +1,10 @@
 format: jb-book
 root: README.md
 parts:
+  - caption: Setup
+    chapters:
+    - file: personal-workspace/intro.md
+
   - caption: Data Exploration
     chapters:
     - file: exploratory-data-analysis/intro.md
