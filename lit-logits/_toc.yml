@@ -3,7 +3,7 @@ root: README.md
 parts:
   - caption: Setup
     chapters:
-    - file: personal-workspace/intro.md
+    - file: personal-workspace/remote-desktop-instance.md
 
   - caption: Data Exploration
     chapters:
