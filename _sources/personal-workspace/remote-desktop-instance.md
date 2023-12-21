@@ -31,7 +31,7 @@ aws ec2 authorize-security-group-ingress --group-name $GRPNAME --protocol tcp --
 AMIID=ami-0fc5d935ebf8bc3bc
 SGID=sg-0425c9b1965d7d884
 INSTTYPE=c5.2xlarge
-aws ec2 run-instances --image-id $AMIID --instance-type $INSTTYPE --count 1 --key-name $KEYNAME --security-group-ids $SGID --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=DevEnv}]' --block-device-mappings '[{"DeviceName": "/dev/sdf", "Ebs": {"VolumeSize": 12, "DeleteOnTermination": false, "VolumeType": "gp2"}}]'
+aws ec2 run-instances --image-id $AMIID --instance-type $INSTTYPE --count 1 --key-name $KEYNAME --security-group-ids $SGID --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=DevEnv}]' --block-device-mappings '[{"DeviceName": "/dev/sda1", "Ebs": {"VolumeSize": 12, "DeleteOnTermination": false, "VolumeType": "gp2"}}]'
 ```
 
 5. To SSH into the instance, first get the public IP and public DNS of the instance. Then run the SSH command using these values 

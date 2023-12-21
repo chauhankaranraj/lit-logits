@@ -459,7 +459,7 @@ aws ec2 authorize-security-group-ingress --group-name $GRPNAME --protocol tcp --
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>AMIID=ami-0fc5d935ebf8bc3bc
 SGID=sg-0425c9b1965d7d884
 INSTTYPE=c5.2xlarge
-aws ec2 run-instances --image-id $AMIID --instance-type $INSTTYPE --count 1 --key-name $KEYNAME --security-group-ids $SGID --tag-specifications &#39;ResourceType=instance,Tags=[{Key=Name,Value=DevEnv}]&#39; --block-device-mappings &#39;[{&quot;DeviceName&quot;: &quot;/dev/sdf&quot;, &quot;Ebs&quot;: {&quot;VolumeSize&quot;: 12, &quot;DeleteOnTermination&quot;: false, &quot;VolumeType&quot;: &quot;gp2&quot;}}]&#39;
+aws ec2 run-instances --image-id $AMIID --instance-type $INSTTYPE --count 1 --key-name $KEYNAME --security-group-ids $SGID --tag-specifications &#39;ResourceType=instance,Tags=[{Key=Name,Value=DevEnv}]&#39; --block-device-mappings &#39;[{&quot;DeviceName&quot;: &quot;/dev/sda1&quot;, &quot;Ebs&quot;: {&quot;VolumeSize&quot;: 12, &quot;DeleteOnTermination&quot;: false, &quot;VolumeType&quot;: &quot;gp2&quot;}}]&#39;
 </pre></div>
 </div>
 <ol class="simple">
