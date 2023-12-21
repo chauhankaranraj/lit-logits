@@ -36,6 +36,7 @@ aws ec2 run-instances --image-id $AMIID --instance-type $INSTTYPE --count 1 --ke
 
 5. To SSH into the instance, first get the public IP and public DNS of the instance. Then run the SSH command using these values 
 ```
-PUBLICDNS=$(aws ec2 describe-instances --instance-ids i-05c140aa4e95a367c --query "Reservations[*].Instances[*].{PublicDNS:PublicDnsName}" --output text)
+INSTID=i-xxxxxxxxxxxxxxxxx
+PUBLICDNS=$(aws ec2 describe-instances --instance-ids $INSTID --query "Reservations[*].Instances[*].{PublicDNS:PublicDnsName}" --output text)
 ssh -i $KEYNAME.pem ubuntu@$PUBLICDNS
 ```
