@@ -4,6 +4,7 @@ parts:
   - caption: Setup
     chapters:
     - file: personal-workspace/remote-desktop-instance.md
+    - file: personal-workspace/working-environment.md
 
   - caption: Data Exploration
     chapters:
