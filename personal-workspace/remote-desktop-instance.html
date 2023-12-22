@@ -433,43 +433,41 @@ title="Print to PDF"
 <section id="aws">
 <h2>AWS<a class="headerlink" href="#aws" title="Permalink to this headline">#</a></h2>
 <p>You can do this via the AWS console, the AWS CLI, or AWS CDK. I prefer the CLI (for a myriad of reasons, which I might write about some day), so the following steps assume the same.</p>
-<ol class="simple">
+<ol>
 <li><p>Install the AWS CLI if you have not already, by following instructions <a class="reference external" href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">here</a>.</p></li>
 <li><p>Log in as your AWS account/user by running <code class="docutils literal notranslate"><span class="pre">aws</span> <span class="pre">configure</span></code>.</p></li>
-<li><p>Create an EC2 Key Pair if you don’t have one already, and set correct permissions on the key file.</p></li>
-</ol>
+<li><p>Create an EC2 Key Pair if you don’t have one already, and set correct permissions on the key file.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>KEYNAME=DevEnvKeyPair
 aws ec2 create-key-pair --key-name $KEYNAME --query &#39;KeyMaterial&#39; --output text &gt; $KEYNAME.pem
 chmod 400 $KEYNAME.pem
 </pre></div>
 </div>
-<ol class="simple">
-<li><p>Create a security group for this instance within the VPC in which it lies (You can find ids of all VPCs by running <code class="docutils literal notranslate"><span class="pre">aws</span> <span class="pre">ec2</span> <span class="pre">describe-vpcs</span></code>). Note down the id of the security group from the output of the first command. Next, add an ingress rule to allow SSH access from your machine’s public IP.</p></li>
-</ol>
+</li>
+<li><p>Create a security group for this instance within the VPC in which it lies (You can find ids of all VPCs by running <code class="docutils literal notranslate"><span class="pre">aws</span> <span class="pre">ec2</span> <span class="pre">describe-vpcs</span></code>). Note down the id of the security group from the output of the first command. Next, add an ingress rule to allow SSH access from your machine’s public IP.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>GRPNAME=DevEnvSecurityGroup
 VPCID=vpc-xxxxxxxxxxxxxxxxx
-PUBLICIP=255.255.255.255
+PUBLICIP=xxx.xxx.xxx.xxx
 aws ec2 create-security-group --group-name $GRPNAME --description &quot;Security Group for my devel environment&quot; --vpc-id $VPCID
 aws ec2 authorize-security-group-ingress --group-name $GRPNAME --protocol tcp --port 22 --cidr $PUBLICIP/32
 </pre></div>
 </div>
-<ol class="simple">
-<li><p>Launch an EC2 instance with Ubuntu 22.04 AMI. The AMI id used here will get outdated eventually so first check for newer versions of Ubuntu 22.04 AMI <a class="reference external" href="https://cloud-images.ubuntu.com/locator/ec2/">here</a>. Note down the id of the launched instance from the output of the command.</p></li>
-</ol>
+</li>
+<li><p>Launch an EC2 instance with Ubuntu 22.04 AMI. The AMI id used here will get outdated eventually so first check for newer versions of Ubuntu 22.04 AMI <a class="reference external" href="https://cloud-images.ubuntu.com/locator/ec2/">here</a>. Note down the id of the launched instance from the output of the command.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>AMIID=ami-0fc5d935ebf8bc3bc
-SGID=sg-0425c9b1965d7d884
+SGID=sg-xxxxxxxxxxxxxxxxx
 INSTTYPE=c5.2xlarge
 aws ec2 run-instances --image-id $AMIID --instance-type $INSTTYPE --count 1 --key-name $KEYNAME --security-group-ids $SGID --tag-specifications &#39;ResourceType=instance,Tags=[{Key=Name,Value=DevEnv}]&#39; --block-device-mappings &#39;[{&quot;DeviceName&quot;: &quot;/dev/sda1&quot;, &quot;Ebs&quot;: {&quot;VolumeSize&quot;: 12, &quot;DeleteOnTermination&quot;: false, &quot;VolumeType&quot;: &quot;gp2&quot;}}]&#39;
 </pre></div>
 </div>
-<ol class="simple">
-<li><p>To SSH into the instance, first get the public IP and public DNS of the instance. Then run the SSH command using these values</p></li>
-</ol>
+</li>
+<li><p>To SSH into the instance, first get the public IP and public DNS of the instance. Then run the SSH command using these values</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>INSTID=i-xxxxxxxxxxxxxxxxx
 PUBLICDNS=$(aws ec2 describe-instances --instance-ids $INSTID --query &quot;Reservations[*].Instances[*].{PublicDNS:PublicDnsName}&quot; --output text)
 ssh -i $KEYNAME.pem ubuntu@$PUBLICDNS
 </pre></div>
 </div>
+</li>
+</ol>
 </section>
 </section>
 
