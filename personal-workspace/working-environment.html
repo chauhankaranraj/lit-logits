@@ -1,0 +1,744 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Working Environment &#8212; Lit Logits</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Overview" href="../exploratory-data-analysis/intro.html" />
+    <link rel="prev" title="Remote Desktop Instance" href="remote-desktop-instance.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Lit Logits</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../README.html">
+                    Lit Logits
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Setup
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="remote-desktop-instance.html">
+   Remote Desktop Instance
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Working Environment
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Data Exploration
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../exploratory-data-analysis/intro.html">
+   Overview
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../exploratory-data-analysis/data-distribution/intro.html">
+   Data Distribution
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exploratory-data-analysis/data-distribution/anderson-darling-test.html">
+     Anderson Darling Test
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exploratory-data-analysis/data-distribution/kolmogorov-smirnov-test.html">
+     Kolmogorov Smirnov Test
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Model Training
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../deep-learning/intro.html">
+   Deep Learning
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deep-learning/generative-adversarial-networks/intro.html">
+     Generative Adversarial Networks
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Model Deployment
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../model-deployment/microservice.html">
+   Creating a Microservice
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../model-deployment/aws/deploy.html">
+     Deploy on AWS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../model-deployment/azure/deploy.html">
+     Deploy on Azure
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../model-deployment/openshift/deploy.html">
+     Deploy on Red Hat OpenShift
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/chauhankaranraj/lit-logits"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/chauhankaranraj/lit-logits/issues/new?title=Issue%20on%20page%20%2Fpersonal-workspace/working-environment.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/personal-workspace/working-environment.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#zsh">
+   Zsh
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#oh-my-zsh">
+   Oh My Zsh
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dependency-management">
+   Dependency Management
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#miniconda">
+     Miniconda
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pyenv">
+     Pyenv
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#poetry">
+     Poetry
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#working-with-pyenv-poetry">
+   Working with pyenv + poetry
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Working Environment</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#zsh">
+   Zsh
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#oh-my-zsh">
+   Oh My Zsh
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dependency-management">
+   Dependency Management
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#miniconda">
+     Miniconda
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pyenv">
+     Pyenv
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#poetry">
+     Poetry
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#working-with-pyenv-poetry">
+   Working with pyenv + poetry
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="working-environment">
+<h1>Working Environment<a class="headerlink" href="#working-environment" title="Permalink to this headline">#</a></h1>
+<p>This doc walks (for the most part, future me) through setting up a data science / machine learning environment.</p>
+<section id="zsh">
+<h2>Zsh<a class="headerlink" href="#zsh" title="Permalink to this headline">#</a></h2>
+<ol>
+<li><p>Install zsh.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">zsh</span> <span class="o">-</span><span class="n">y</span>
+</pre></div>
+</div>
+</li>
+<li><p>Configure zsh.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">zsh</span>
+</pre></div>
+</div>
+</li>
+<li><p>Set zsh as the default shell.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sudo chsh -s $(which zsh)
+sudo chsh -s $(which zsh) ubuntu
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="oh-my-zsh">
+<h2>Oh My Zsh<a class="headerlink" href="#oh-my-zsh" title="Permalink to this headline">#</a></h2>
+<ol>
+<li><p>Install Oh My Zsh.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sh</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Install zsh-autosuggestions plugin.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+# Next, add zsh-autosuggestions to plugins=() section in ~/.zshrc
+</pre></div>
+</div>
+</li>
+<li><p>Install zsh-syntax-highlighting plugin.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+# Next, add zsh-syntax-highlighting to plugins=() section in ~/.zshrc
+</pre></div>
+</div>
+</li>
+<li><p>Set theme</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vim</span> <span class="o">~/.</span><span class="n">zshrc</span>
+<span class="c1"># set ZSH_THEME=af-magic</span>
+</pre></div>
+</div>
+</li>
+<li><p>Add any frequently used aliases.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vim</span> <span class="o">~/.</span><span class="n">zshrc</span>
+<span class="c1"># Add the following under the section titled &quot;personal aliases&quot;</span>
+<span class="n">alias</span> <span class="bp">cls</span><span class="o">=</span><span class="s2">&quot;clear&quot;</span>
+<span class="n">alias</span> <span class="n">dk</span><span class="o">=</span><span class="s2">&quot;docker&quot;</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="dependency-management">
+<h2>Dependency Management<a class="headerlink" href="#dependency-management" title="Permalink to this headline">#</a></h2>
+<p>Python can sometimes be difficult to tame due to its dependency and packaging quirks. In my (little) experience, I’ve found that a combination of <code class="docutils literal notranslate"><span class="pre">pyenv</span></code> and <code class="docutils literal notranslate"><span class="pre">poetry</span></code> is able to resolve most python dependency issues well. That said, I also like to keep conda installed for the rare occasions that the former fails.</p>
+<section id="miniconda">
+<h3>Miniconda<a class="headerlink" href="#miniconda" title="Permalink to this headline">#</a></h3>
+<ol>
+<li><p>Install miniconda using the instructions on the <a class="reference external" href="https://docs.conda.io/projects/miniconda/en/latest/">official docs</a>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">~/</span><span class="n">miniconda3</span>
+<span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">repo</span><span class="o">.</span><span class="n">anaconda</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">miniconda</span><span class="o">/</span><span class="n">Miniconda3</span><span class="o">-</span><span class="n">latest</span><span class="o">-</span><span class="n">Linux</span><span class="o">-</span><span class="n">x86_64</span><span class="o">.</span><span class="n">sh</span> <span class="o">-</span><span class="n">O</span> <span class="o">~/</span><span class="n">miniconda3</span><span class="o">/</span><span class="n">miniconda</span><span class="o">.</span><span class="n">sh</span>
+<span class="n">bash</span> <span class="o">~/</span><span class="n">miniconda3</span><span class="o">/</span><span class="n">miniconda</span><span class="o">.</span><span class="n">sh</span> <span class="o">-</span><span class="n">b</span> <span class="o">-</span><span class="n">u</span> <span class="o">-</span><span class="n">p</span> <span class="o">~/</span><span class="n">miniconda3</span>
+<span class="n">rm</span> <span class="o">-</span><span class="n">rf</span> <span class="o">~/</span><span class="n">miniconda3</span><span class="o">/</span><span class="n">miniconda</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+</li>
+<li><p>Init conda for zsh (this will add content to <code class="docutils literal notranslate"><span class="pre">.zshrc</span></code>) and disable activation of the base environment by default.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">~/</span><span class="n">miniconda3</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">conda</span> <span class="n">init</span> <span class="n">zsh</span>
+<span class="o">~/</span><span class="n">miniconda3</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">conda</span> <span class="n">config</span> <span class="o">--</span><span class="nb">set</span> <span class="n">auto_activate_base</span> <span class="n">false</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="pyenv">
+<h3>Pyenv<a class="headerlink" href="#pyenv" title="Permalink to this headline">#</a></h3>
+<ol>
+<li><p>Build the pre-requisite system dependencies.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span><span class="p">;</span> <span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">build</span><span class="o">-</span><span class="n">essential</span> <span class="n">libssl</span><span class="o">-</span><span class="n">dev</span> <span class="n">zlib1g</span><span class="o">-</span><span class="n">dev</span> \
+<span class="n">libbz2</span><span class="o">-</span><span class="n">dev</span> <span class="n">libreadline</span><span class="o">-</span><span class="n">dev</span> <span class="n">libsqlite3</span><span class="o">-</span><span class="n">dev</span> <span class="n">curl</span> \
+<span class="n">libncursesw5</span><span class="o">-</span><span class="n">dev</span> <span class="n">xz</span><span class="o">-</span><span class="n">utils</span> <span class="n">tk</span><span class="o">-</span><span class="n">dev</span> <span class="n">libxml2</span><span class="o">-</span><span class="n">dev</span> <span class="n">libxmlsec1</span><span class="o">-</span><span class="n">dev</span> <span class="n">libffi</span><span class="o">-</span><span class="n">dev</span> <span class="n">liblzma</span><span class="o">-</span><span class="n">dev</span>
+</pre></div>
+</div>
+</li>
+<li><p>Install pyenv using the quick and dirty way.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">pyenv</span><span class="o">.</span><span class="n">run</span> <span class="o">|</span> <span class="n">bash</span>
+</pre></div>
+</div>
+</li>
+<li><p>Add the following pyenv initialization lines to <code class="docutils literal notranslate"><span class="pre">.zshrc</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># &gt;&gt;&gt; pyenv init &gt;&gt;&gt;
+export PYENV_ROOT=&quot;$HOME/.pyenv&quot;
+[[ -d $PYENV_ROOT/bin ]] &amp;&amp; export PATH=&quot;$PYENV_ROOT/bin:$PATH&quot;
+eval &quot;$(pyenv init -)&quot;
+# &lt;&lt;&lt; pyenv init &lt;&lt;&lt;
+</pre></div>
+</div>
+</li>
+<li><p>Install the versions of Python you intend to use for your projects. NOTE: I <em>highly</em> advice against using system python in any of your projects, even if it’s the exact version you want. Just use pyenv installed Python binaries for isolated and clean environments.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pyenv</span> <span class="n">install</span> <span class="mf">3.10.13</span>
+<span class="n">pyenv</span> <span class="n">install</span> <span class="mf">3.8.18</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="poetry">
+<h3>Poetry<a class="headerlink" href="#poetry" title="Permalink to this headline">#</a></h3>
+<ol>
+<li><p>Install using the quick and dirty way shown on the <a class="reference external" href="https://python-poetry.org/docs/#installing-with-the-official-installer">official docs</a>. NOTE: use system python for this, not pyenv python binaries.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">sSL</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">install</span><span class="o">.</span><span class="n">python</span><span class="o">-</span><span class="n">poetry</span><span class="o">.</span><span class="n">org</span> <span class="o">|</span> <span class="n">python3</span> <span class="o">-</span>
+</pre></div>
+</div>
+</li>
+<li><p>Update <code class="docutils literal notranslate"><span class="pre">PATH</span></code> variable by adding the following to <code class="docutils literal notranslate"><span class="pre">~/.zshrc</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># &gt;&gt;&gt; poetry init &gt;&gt;&gt;</span>
+<span class="n">export</span> <span class="n">PATH</span><span class="o">=</span><span class="s2">&quot;/home/ubuntu/.local/bin:$PATH&quot;</span>
+<span class="c1"># &lt;&lt;&lt; poetry init &lt;&lt;&lt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>(Optional) Configure poetry to create the virtualenv for a project within its own directory.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">poetry</span> <span class="n">config</span> <span class="n">virtualenvs</span><span class="o">.</span><span class="ow">in</span><span class="o">-</span><span class="n">project</span> <span class="n">true</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+<section id="working-with-pyenv-poetry">
+<h2>Working with pyenv + poetry<a class="headerlink" href="#working-with-pyenv-poetry" title="Permalink to this headline">#</a></h2>
+<p>The most reliable and reproducible way to work on Python projects using the above tools is as follows.</p>
+<ol>
+<li><p>Create a directory for the project, for example</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">py</span><span class="o">-</span><span class="mi">3</span><span class="o">-</span><span class="mi">8</span><span class="o">-</span><span class="mi">18</span>
+<span class="n">cd</span> <span class="n">py</span><span class="o">-</span><span class="mi">3</span><span class="o">-</span><span class="mi">8</span><span class="o">-</span><span class="mi">18</span>
+</pre></div>
+</div>
+</li>
+<li><p>If the Python version (let’s say, <code class="docutils literal notranslate"><span class="pre">3.8.18</span></code>) you intend to use for this project is not already installed by pyenv, then do so first.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pyenv</span> <span class="n">install</span> <span class="mf">3.8.18</span>
+</pre></div>
+</div>
+</li>
+<li><p>Set the local Python version in this directory to be the intended version.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pyenv</span> <span class="n">local</span> <span class="mf">3.8.18</span>
+<span class="n">python</span> <span class="o">-</span><span class="n">V</span>    <span class="c1"># should output 3.8.18</span>
+</pre></div>
+</div>
+</li>
+<li><p>Initialize poetry for this project. In the interactive prompts that follow, set Python version accordingly (<code class="docutils literal notranslate"><span class="pre">3.8.18</span></code> in this example) and optionally list the dependencies of the project.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">poetry</span> <span class="n">init</span>
+</pre></div>
+</div>
+</li>
+<li><p>Activate the virtual environment and then install the dependencies. Once this is done, you can work on the project scripts as you normally would.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">poetry</span> <span class="n">shell</span>
+<span class="n">poetry</span> <span class="n">install</span>
+</pre></div>
+</div>
+</li>
+<li><p>After you’re done, quit the virtual environment as follows</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">exit</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./personal-workspace"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="remote-desktop-instance.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Remote Desktop Instance</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../exploratory-data-analysis/intro.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Overview</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Karanraj Chauhan<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
