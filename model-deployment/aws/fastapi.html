@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Deploy on AWS &#8212; Lit Logits</title>
+    <title>FastAPI App on EC2 &#8212; Lit Logits</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -52,8 +52,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="FastAPI App on EC2" href="fastapi.html" />
-    <link rel="prev" title="Creating a Microservice" href="../microservice.html" />
+    <link rel="next" title="Deploy on Azure" href="../azure/deploy.html" />
+    <link rel="prev" title="Deploy on AWS" href="deploy.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -200,7 +200,7 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul class="current">
    <li class="toctree-l2 current active has-children">
-    <a class="current reference internal" href="#">
+    <a class="reference internal" href="deploy.html">
      Deploy on AWS
     </a>
     <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
@@ -208,9 +208,9 @@ const thebe_selector_output = ".output, .cell_output"
      <i class="fas fa-chevron-down">
      </i>
     </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="fastapi.html">
+    <ul class="current">
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
        FastAPI App on EC2
       </a>
      </li>
@@ -318,7 +318,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/chauhankaranraj/lit-logits/issues/new?title=Issue%20on%20page%20%2Fmodel-deployment/aws/deploy.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/chauhankaranraj/lit-logits/issues/new?title=Issue%20on%20page%20%2Fmodel-deployment/aws/fastapi.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -346,7 +346,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../../_sources/model-deployment/aws/deploy.md"
+        <a href="../../_sources/model-deployment/aws/fastapi.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -395,7 +395,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Deploy on AWS</h1>
+                <h1>FastAPI App on EC2</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -407,11 +407,109 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="deploy-on-aws">
-<h1>Deploy on AWS<a class="headerlink" href="#deploy-on-aws" title="Permalink to this headline">#</a></h1>
-<p>There are various ways to architect model deployment on AWS. The approach you take depends on the type of model, use case, expected traffic, and so on. In this series we’ll show a few of these approaches, in increasing order of complexity.</p>
-<div class="toctree-wrapper compound">
+  <section class="tex2jax_ignore mathjax_ignore" id="fastapi-app-on-ec2">
+<h1>FastAPI App on EC2<a class="headerlink" href="#fastapi-app-on-ec2" title="Permalink to this headline">#</a></h1>
+<ol>
+<li><p>Follow steps here to launch an EC2 instance and SSH into it. NOTE: this time you can choose a smaller instance type (e.g. <code class="docutils literal notranslate"><span class="pre">c7a.medium</span></code>) since this is for demo purposes only.</p></li>
+<li><p>Follow steps here to install <code class="docutils literal notranslate"><span class="pre">pyenv</span></code> and the Python version that your model was trained in (or is compatible with).</p></li>
+<li><p>Create a project directory and set the Python version for it.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">app</span>
+<span class="n">cd</span> <span class="n">app</span>
+<span class="n">pyenv</span> <span class="n">local</span> <span class="mf">3.10.13</span>
+</pre></div>
 </div>
+</li>
+<li><p>Install the runtime dependencies.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">boto3</span> <span class="n">fastapi</span> <span class="n">uvicorn</span> <span class="n">scikit</span><span class="o">-</span><span class="n">learn</span>
+</pre></div>
+</div>
+</li>
+<li><p>Export AWS credentials as environment variables (or install aws locally and configure it).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">AWS_ACCESS_KEY_ID</span><span class="o">=</span><span class="n">abcd</span>
+<span class="n">export</span> <span class="n">AWS_SECRET_ACCESS_KEY</span><span class="o">=</span><span class="n">efgh</span>
+</pre></div>
+</div>
+</li>
+<li><p>Add the inference script.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span>
+<span class="kn">from</span> <span class="nn">fastapi.responses</span> <span class="kn">import</span> <span class="n">HTMLResponse</span>
+<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+<span class="kn">import</span> <span class="nn">joblib</span>
+<span class="kn">import</span> <span class="nn">boto3</span>
+
+
+<span class="c1"># Init app</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+<span class="c1"># Download trained model from s3</span>
+<span class="n">s3_client</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s1">&#39;s3&#39;</span><span class="p">)</span>
+<span class="n">s3_client</span><span class="o">.</span><span class="n">download_file</span><span class="p">(</span><span class="s1">&#39;lit-logits-demo&#39;</span><span class="p">,</span> <span class="s1">&#39;model-deployment/aws/sklearn/breast-cancer-predictor.joblib&#39;</span><span class="p">,</span> <span class="s1">&#39;model.joblib&#39;</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;model.joblib&#39;</span><span class="p">)</span>
+
+
+<span class="c1"># Human friendly home page</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="n">response_class</span><span class="o">=</span><span class="n">HTMLResponse</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">home</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    &lt;html&gt;</span>
+<span class="s2">        &lt;head&gt;</span>
+<span class="s2">            &lt;title&gt;Sample Scikit-Learn Predictor&lt;/title&gt;</span>
+<span class="s2">        &lt;/head&gt;</span>
+<span class="s2">        &lt;body&gt;</span>
+<span class="s2">            &lt;h1&gt;Breast Cancer Predictor&lt;/h1&gt;</span>
+<span class="s2">                &lt;p&gt;Please pass a data point to the /predict POST endpoint&lt;/p&gt;</span>
+<span class="s2">        &lt;/body&gt;</span>
+<span class="s2">    &lt;/html&gt;</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+
+<span class="k">class</span> <span class="nc">BreastCancerDatapoint</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="c1"># Single data point from the UCI breast cancer dataset</span>
+    <span class="n">features</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;/predict&#39;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">BreastCancerDatapoint</span><span class="p">):</span>
+    <span class="n">prediction</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="n">data</span><span class="o">.</span><span class="n">features</span><span class="p">])</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;prediction&quot;</span><span class="p">:</span> <span class="n">prediction</span><span class="o">.</span><span class="n">tolist</span><span class="p">()}</span>
+</pre></div>
+</div>
+</li>
+<li><p>Run the server.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">uvicorn</span> <span class="n">main</span><span class="p">:</span><span class="n">app</span> <span class="o">--</span><span class="n">host</span> <span class="mf">0.0.0.0</span> <span class="o">--</span><span class="n">port</span> <span class="mi">8080</span>
+</pre></div>
+</div>
+</li>
+<li><p>Update security group to allow access (the following only allows access to your current device).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>aws ec2 authorize-security-group-ingress --group-name $GRPNAME --protocol tcp --port 8080 --cidr $PUBLICIP/32
+</pre></div>
+</div>
+</li>
+<li><p>Test the url from within the EC2 instance.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="s1">&#39;POST&#39;</span>   <span class="s1">&#39;http://localhost:8080/predict&#39;</span>   <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;accept: application/json&#39;</span>   <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Content-Type: application/json&#39;</span>   <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{</span>
+<span class="s2">&quot;features&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.799e+01</span><span class="p">,</span><span class="mf">1.038e+01</span><span class="p">,</span><span class="mf">1.228e+02</span><span class="p">,</span><span class="mf">1.001e+03</span><span class="p">,</span><span class="mf">1.184e-01</span><span class="p">,</span><span class="mf">2.776e-01</span><span class="p">,</span><span class="mf">3.001e-01</span>
+    <span class="p">,</span><span class="mf">1.471e-01</span><span class="p">,</span><span class="mf">2.419e-01</span><span class="p">,</span><span class="mf">7.871e-02</span><span class="p">,</span><span class="mf">1.095e+00</span><span class="p">,</span><span class="mf">9.053e-01</span><span class="p">,</span><span class="mf">8.589e+00</span><span class="p">,</span><span class="mf">1.534e+02</span>
+    <span class="p">,</span><span class="mf">6.399e-03</span><span class="p">,</span><span class="mf">4.904e-02</span><span class="p">,</span><span class="mf">5.373e-02</span><span class="p">,</span><span class="mf">1.587e-02</span><span class="p">,</span><span class="mf">3.003e-02</span><span class="p">,</span><span class="mf">6.193e-03</span><span class="p">,</span><span class="mf">2.538e+01</span>
+    <span class="p">,</span><span class="mf">1.733e+01</span><span class="p">,</span><span class="mf">1.846e+02</span><span class="p">,</span><span class="mf">2.019e+03</span><span class="p">,</span><span class="mf">1.622e-01</span><span class="p">,</span><span class="mf">6.656e-01</span><span class="p">,</span><span class="mf">7.119e-01</span><span class="p">,</span><span class="mf">2.654e-01</span>
+    <span class="p">,</span><span class="mf">4.601e-01</span><span class="p">,</span><span class="mf">1.189e-01</span><span class="p">]</span>
+<span class="p">}</span><span class="s1">&#39;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Test the url from an allow-listed device.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="s1">&#39;POST&#39;</span>   <span class="s1">&#39;http://3.237.36.158:8080/predict&#39;</span>   <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;accept: application/json&#39;</span>   <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Content-Type: application/json&#39;</span>   <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{</span>
+<span class="s2">&quot;features&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.799e+01</span><span class="p">,</span><span class="mf">1.038e+01</span><span class="p">,</span><span class="mf">1.228e+02</span><span class="p">,</span><span class="mf">1.001e+03</span><span class="p">,</span><span class="mf">1.184e-01</span><span class="p">,</span><span class="mf">2.776e-01</span><span class="p">,</span><span class="mf">3.001e-01</span>
+    <span class="p">,</span><span class="mf">1.471e-01</span><span class="p">,</span><span class="mf">2.419e-01</span><span class="p">,</span><span class="mf">7.871e-02</span><span class="p">,</span><span class="mf">1.095e+00</span><span class="p">,</span><span class="mf">9.053e-01</span><span class="p">,</span><span class="mf">8.589e+00</span><span class="p">,</span><span class="mf">1.534e+02</span>
+    <span class="p">,</span><span class="mf">6.399e-03</span><span class="p">,</span><span class="mf">4.904e-02</span><span class="p">,</span><span class="mf">5.373e-02</span><span class="p">,</span><span class="mf">1.587e-02</span><span class="p">,</span><span class="mf">3.003e-02</span><span class="p">,</span><span class="mf">6.193e-03</span><span class="p">,</span><span class="mf">2.538e+01</span>
+    <span class="p">,</span><span class="mf">1.733e+01</span><span class="p">,</span><span class="mf">1.846e+02</span><span class="p">,</span><span class="mf">2.019e+03</span><span class="p">,</span><span class="mf">1.622e-01</span><span class="p">,</span><span class="mf">6.656e-01</span><span class="p">,</span><span class="mf">7.119e-01</span><span class="p">,</span><span class="mf">2.654e-01</span>
+    <span class="p">,</span><span class="mf">4.601e-01</span><span class="p">,</span><span class="mf">1.189e-01</span><span class="p">]</span>
+<span class="p">}</span><span class="s1">&#39;</span>
+<span class="p">{</span><span class="s2">&quot;prediction&quot;</span><span class="p">:[</span><span class="mi">0</span><span class="p">]}</span><span class="o">%</span>
+</pre></div>
+</div>
+</li>
+</ol>
 </section>
 
     <script type="text/x-thebe-config">
@@ -441,17 +539,17 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../microservice.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="deploy.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Creating a Microservice</p>
+            <p class="prev-next-title">Deploy on AWS</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="fastapi.html" title="next page">
+    <a class='right-next' id="next-link" href="../azure/deploy.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">FastAPI App on EC2</p>
+        <p class="prev-next-title">Deploy on Azure</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
