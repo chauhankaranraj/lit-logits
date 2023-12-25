@@ -25,5 +25,7 @@ parts:
     - file: model-deployment/microservice.md
       sections:
         - file: model-deployment/aws/deploy.md
+          sections:
+          - file: model-deployment/aws/fastapi.md
         - file: model-deployment/azure/deploy.md
         - file: model-deployment/openshift/deploy.md
