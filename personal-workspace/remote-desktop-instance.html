@@ -463,7 +463,7 @@ chmod 400 $KEYNAME.pem
 <li><p>Create a security group for this instance within the VPC in which it lies (You can find ids of all VPCs by running <code class="docutils literal notranslate"><span class="pre">aws</span> <span class="pre">ec2</span> <span class="pre">describe-vpcs</span></code>). Note down the id of the security group from the output of the first command. Next, add an ingress rule to allow SSH access from your machine’s public IP.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>GRPNAME=DevEnvSecurityGroup
 VPCID=vpc-xxxxxxxxxxxxxxxxx
-PUBLICIP=xxx.xxx.xxx.xxx
+PUBLICIP=$(curl ipinfo.io/ip)
 aws ec2 create-security-group --group-name $GRPNAME --description &quot;Security Group for my devel environment&quot; --vpc-id $VPCID
 aws ec2 authorize-security-group-ingress --group-name $GRPNAME --protocol tcp --port 22 --cidr $PUBLICIP/32
 </pre></div>
