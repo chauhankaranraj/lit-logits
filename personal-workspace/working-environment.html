@@ -603,6 +603,11 @@ sudo apt-get update
 </pre></div>
 </div>
 </li>
+<li><p>Add user to Docker group to avoid having to sudo all docker commands.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sudo usermod -aG docker $USER
+</pre></div>
+</div>
+</li>
 </ol>
 </section>
 <section id="dependency-management">
