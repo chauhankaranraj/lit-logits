@@ -21,7 +21,7 @@ You can do this via the AWS console, the AWS CLI, or AWS CDK. I prefer the CLI (
     ```
     GRPNAME=DevEnvSecurityGroup
     VPCID=vpc-xxxxxxxxxxxxxxxxx
-    PUBLICIP=xxx.xxx.xxx.xxx
+    PUBLICIP=$(curl ipinfo.io/ip)
     aws ec2 create-security-group --group-name $GRPNAME --description "Security Group for my devel environment" --vpc-id $VPCID
     aws ec2 authorize-security-group-ingress --group-name $GRPNAME --protocol tcp --port 22 --cidr $PUBLICIP/32
     ```
