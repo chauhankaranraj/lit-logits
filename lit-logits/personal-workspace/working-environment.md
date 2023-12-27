@@ -77,6 +77,11 @@ This doc walks (for the most part, future me) through setting up a data science 
     sudo apt-get install docker-ce docker-ce-cli containerd.io
     ```
 
+3. Add user to Docker group to avoid having to sudo all docker commands.
+    ```
+    sudo usermod -aG docker $USER
+    ```
+
 ## Dependency Management
 
 Python can sometimes be difficult to tame due to its dependency and packaging quirks. In my (little) experience, I've found that a combination of `pyenv` and `poetry` is able to resolve most python dependency issues well. That said, I also like to keep conda installed for the rare occasions that the former fails.
