@@ -22,10 +22,9 @@ parts:
 
   - caption: Model Deployment
     chapters:
-    - file: model-deployment/microservice.md
+    - file: model-deployment/aws/intro.md
       sections:
-        - file: model-deployment/aws/deploy.md
-          sections:
-          - file: model-deployment/aws/fastapi.md
-        - file: model-deployment/azure/deploy.md
-        - file: model-deployment/openshift/deploy.md
+      - file: model-deployment/aws/fastapi.md
+    - file: model-deployment/azure/intro.md
+    - file: model-deployment/gcp/intro.md
+    - file: model-deployment/openshift/intro.md

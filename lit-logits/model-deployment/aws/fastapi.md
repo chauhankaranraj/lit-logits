@@ -1,4 +1,4 @@
-# FastAPI App on EC2
+# Classical ML Model via FastAPI
 
 1. Follow steps here to launch an EC2 instance and SSH into it. NOTE: this time you can choose a smaller instance type (e.g. `c7a.medium`) since this is for demo purposes only.
 
