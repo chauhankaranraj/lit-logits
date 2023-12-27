@@ -53,7 +53,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Azure" href="../azure/intro.html" />
-    <link rel="prev" title="Classical ML Model via FastAPI" href="fastapi.html" />
+    <link rel="prev" title="Classical ML Model via FastAPI" href="classical-fastapi.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -200,7 +200,7 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul class="current">
    <li class="toctree-l2">
-    <a class="reference internal" href="fastapi.html">
+    <a class="reference internal" href="classical-fastapi.html">
      Classical ML Model via FastAPI
     </a>
    </li>
@@ -524,7 +524,7 @@ title="Print to PDF"
 </pre></div>
 </div>
 </li>
-<li><p>Build the container image.(create)</p>
+<li><p>Build the container image.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dk</span> <span class="n">build</span> <span class="o">-</span><span class="n">t</span> <span class="n">llm</span><span class="o">-</span><span class="n">gpt4all</span><span class="o">-</span><span class="n">fastapi</span><span class="o">-</span><span class="n">demo</span> <span class="o">.</span>
 </pre></div>
 </div>
@@ -554,9 +554,9 @@ title="Print to PDF"
 <section id="deploy-the-service-on-ec2">
 <h2>Deploy the Service on EC2<a class="headerlink" href="#deploy-the-service-on-ec2" title="Permalink to this headline">#</a></h2>
 <ol>
-<li><p>Follow steps <a class="reference external" href="../../personal-workspace/remote-desktop-instance.md#aws">here</a> to launch an EC2 instance and SSH into it. NOTE: this time you can choose a bigger instance type (e.g. <code class="docutils literal notranslate"><span class="pre">c5a.4xlarge</span></code>) since LLMs require a decent amount of resources.</p></li>
+<li><p>Follow steps <a class="reference external" href="../../personal-workspace/remote-desktop-instance#aws">here</a> to launch an EC2 instance and SSH into it. NOTE: this time you can choose a bigger instance type (e.g. <code class="docutils literal notranslate"><span class="pre">c5a.4xlarge</span></code>) since LLMs require a decent amount of resources.</p></li>
 <li><p>Follow steps <a class="reference external" href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html#getting-started-install-instructions">here</a> to install <code class="docutils literal notranslate"><span class="pre">aws</span></code>.</p></li>
-<li><p>Follow steps <a class="reference external" href="../../personal-workspace/working-environment.md#docker">here</a> to install <code class="docutils literal notranslate"><span class="pre">docker</span></code>. You’ll need to logout and SSH back in for the user group change to take effect.</p></li>
+<li><p>Follow steps <a class="reference external" href="../../personal-workspace/working-environment#docker">here</a> to install <code class="docutils literal notranslate"><span class="pre">docker</span></code>. You’ll need to logout and SSH back in for the user group change to take effect.</p></li>
 <li><p>Run a container using the image uploaded to the ECR repo in the above section.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">AWS_ACCESS_KEY_ID</span><span class="o">=</span><span class="n">abcd</span>
 <span class="n">export</span> <span class="n">AWS_SECRET_ACCESS_KEY</span><span class="o">=</span><span class="n">efgh</span>
@@ -639,7 +639,7 @@ curl -X &#39;GET&#39; http://$INSTIP:8080/generate \
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="fastapi.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="classical-fastapi.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>

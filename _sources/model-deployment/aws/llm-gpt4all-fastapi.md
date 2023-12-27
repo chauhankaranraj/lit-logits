@@ -70,7 +70,7 @@ To ensure consistency, reproducibility, and portability, we will package our ser
     CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8080"]
     ```
 
-5. Build the container image.(create)
+5. Build the container image.
     ```
     dk build -t llm-gpt4all-fastapi-demo .
     ```
@@ -97,11 +97,11 @@ To ensure consistency, reproducibility, and portability, we will package our ser
 
 ## Deploy the Service on EC2
 
-1. Follow steps [here](../../personal-workspace/remote-desktop-instance.md#aws) to launch an EC2 instance and SSH into it. NOTE: this time you can choose a bigger instance type (e.g. `c5a.4xlarge`) since LLMs require a decent amount of resources.
+1. Follow steps [here](../../personal-workspace/remote-desktop-instance#aws) to launch an EC2 instance and SSH into it. NOTE: this time you can choose a bigger instance type (e.g. `c5a.4xlarge`) since LLMs require a decent amount of resources.
 
 2. Follow steps [here](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html#getting-started-install-instructions) to install `aws`.
 
-3. Follow steps [here](../../personal-workspace/working-environment.md#docker) to install `docker`. You'll need to logout and SSH back in for the user group change to take effect.
+3. Follow steps [here](../../personal-workspace/working-environment#docker) to install `docker`. You'll need to logout and SSH back in for the user group change to take effect.
 
 4. Run a container using the image uploaded to the ECR repo in the above section.
     ```

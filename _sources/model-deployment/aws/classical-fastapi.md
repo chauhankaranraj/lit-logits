@@ -1,8 +1,8 @@
 # Classical ML Model via FastAPI
 
-1. Follow steps here to launch an EC2 instance and SSH into it. NOTE: this time you can choose a smaller instance type (e.g. `c7a.medium`) since this is for demo purposes only.
+1. Follow steps [here](../../personal-workspace/remote-desktop-instance#aws) to launch an EC2 instance and SSH into it. NOTE: this time you can choose a smaller instance type (e.g. `c7a.medium`) since this is for demo purposes only.
 
-2. Follow steps here to install `pyenv` and the Python version that your model was trained in (or is compatible with).
+2. Follow steps [here](../../personal-workspace/working-environment#pyenv) to install `pyenv` and the Python version that your model was trained in (or is compatible with).
 
 3. Create a project directory and set the Python version for it.
     ```
