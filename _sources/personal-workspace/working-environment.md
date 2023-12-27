@@ -55,6 +55,28 @@ This doc walks (for the most part, future me) through setting up a data science 
     alias pe="poetry"
     ```
 
+## Docker
+
+1. Add repository.
+    ```
+    sudo apt-get update
+    sudo apt-get install ca-certificates curl gnupg
+    sudo install -m 0755 -d /etc/apt/keyrings
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+    sudo chmod a+r /etc/apt/keyrings/docker.gpg
+
+    echo \
+    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+    $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+    sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    sudo apt-get update
+    ```
+
+2. Install only the necessary docker tools.
+    ```
+    sudo apt-get install docker-ce docker-ce-cli containerd.io
+    ```
+
 ## Dependency Management
 
 Python can sometimes be difficult to tame due to its dependency and packaging quirks. In my (little) experience, I've found that a combination of `pyenv` and `poetry` is able to resolve most python dependency issues well. That said, I also like to keep conda installed for the rare occasions that the former fails.
