@@ -52,6 +52,7 @@ This doc walks (for the most part, future me) through setting up a data science 
     # Add the following under the section titled "personal aliases"
     alias cls="clear"
     alias dk="docker"
+    alias pe="poetry"
     ```
 
 ## Dependency Management
