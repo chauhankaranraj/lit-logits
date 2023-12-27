@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Deploy on AWS &#8212; Lit Logits</title>
+    <title>AWS &#8212; Lit Logits</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -52,8 +52,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="FastAPI App on EC2" href="fastapi.html" />
-    <link rel="prev" title="Creating a Microservice" href="../microservice.html" />
+    <link rel="next" title="Classical ML Model via FastAPI" href="fastapi.html" />
+    <link rel="prev" title="Generative Adversarial Networks" href="../../deep-learning/generative-adversarial-networks/intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -190,43 +190,36 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="../microservice.html">
-   Creating a Microservice
+  <a class="current reference internal" href="#">
+   AWS
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul class="current">
-   <li class="toctree-l2 current active has-children">
-    <a class="current reference internal" href="#">
-     Deploy on AWS
-    </a>
-    <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-    <label for="toctree-checkbox-4">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="fastapi.html">
-       FastAPI App on EC2
-      </a>
-     </li>
-    </ul>
-   </li>
+  <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../azure/deploy.html">
-     Deploy on Azure
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../openshift/deploy.html">
-     Deploy on Red Hat OpenShift
+    <a class="reference internal" href="fastapi.html">
+     Classical ML Model via FastAPI
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../azure/intro.html">
+   Azure
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../gcp/intro.html">
+   Google Cloud Platform
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../openshift/intro.html">
+   Red Hat OpenShift
+  </a>
  </li>
 </ul>
 
@@ -318,7 +311,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/chauhankaranraj/lit-logits/issues/new?title=Issue%20on%20page%20%2Fmodel-deployment/aws/deploy.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/chauhankaranraj/lit-logits/issues/new?title=Issue%20on%20page%20%2Fmodel-deployment/aws/intro.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -346,7 +339,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../../_sources/model-deployment/aws/deploy.md"
+        <a href="../../_sources/model-deployment/aws/intro.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -395,7 +388,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Deploy on AWS</h1>
+                <h1>AWS</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -407,8 +400,8 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="deploy-on-aws">
-<h1>Deploy on AWS<a class="headerlink" href="#deploy-on-aws" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="aws">
+<h1>AWS<a class="headerlink" href="#aws" title="Permalink to this headline">#</a></h1>
 <p>There are various ways to architect model deployment on AWS. The approach you take depends on the type of model, use case, expected traffic, and so on. In this series we’ll show a few of these approaches, in increasing order of complexity.</p>
 <div class="toctree-wrapper compound">
 </div>
@@ -441,17 +434,17 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../microservice.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../../deep-learning/generative-adversarial-networks/intro.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Creating a Microservice</p>
+            <p class="prev-next-title">Generative Adversarial Networks</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="fastapi.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">FastAPI App on EC2</p>
+        <p class="prev-next-title">Classical ML Model via FastAPI</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

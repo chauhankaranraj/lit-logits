@@ -1,3 +1,0 @@
-# Deploy on Azure
-
-tbd
