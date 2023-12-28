@@ -26,6 +26,8 @@ parts:
       sections:
       - file: model-deployment/aws/classical-fastapi.md
       - file: model-deployment/aws/llm-gpt4all-fastapi.md
+        sections:
+        - file: model-deployment/aws/llm-gpt4all-fastapi-autoscaling.md
     - file: model-deployment/azure/intro.md
     - file: model-deployment/gcp/intro.md
     - file: model-deployment/openshift/intro.md
