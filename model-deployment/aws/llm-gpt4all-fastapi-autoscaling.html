@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Azure &#8212; Lit Logits</title>
+    <title>Auto Scaling and Load Balancing &#8212; Lit Logits</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -52,8 +52,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Google Cloud Platform" href="../gcp/intro.html" />
-    <link rel="prev" title="Auto Scaling and Load Balancing" href="../aws/llm-gpt4all-fastapi-autoscaling.html" />
+    <link rel="next" title="Azure" href="../azure/intro.html" />
+    <link rel="prev" title="Large Language Model (LLM) via FastAPI" href="llm-gpt4all-fastapi.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -189,33 +189,33 @@ const thebe_selector_output = ".output, .cell_output"
  </span>
 </p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../aws/intro.html">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="intro.html">
    AWS
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
+  <ul class="current">
    <li class="toctree-l2">
-    <a class="reference internal" href="../aws/classical-fastapi.html">
+    <a class="reference internal" href="classical-fastapi.html">
      Classical ML Model via FastAPI
     </a>
    </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../aws/llm-gpt4all-fastapi.html">
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="llm-gpt4all-fastapi.html">
      Large Language Model (LLM) via FastAPI
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
     <label for="toctree-checkbox-4">
      <i class="fas fa-chevron-down">
      </i>
     </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../aws/llm-gpt4all-fastapi-autoscaling.html">
+    <ul class="current">
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
        Auto Scaling and Load Balancing
       </a>
      </li>
@@ -223,8 +223,8 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../azure/intro.html">
    Azure
   </a>
  </li>
@@ -328,7 +328,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/chauhankaranraj/lit-logits/issues/new?title=Issue%20on%20page%20%2Fmodel-deployment/azure/intro.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/chauhankaranraj/lit-logits/issues/new?title=Issue%20on%20page%20%2Fmodel-deployment/aws/llm-gpt4all-fastapi-autoscaling.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -356,7 +356,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../../_sources/model-deployment/azure/intro.md"
+        <a href="../../_sources/model-deployment/aws/llm-gpt4all-fastapi-autoscaling.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -393,23 +393,70 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#create-a-load-balancer">
+   Create a Load Balancer
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#set-up-an-auto-scaling-group">
+   Set Up an Auto Scaling Group
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Azure</h1>
+                <h1>Auto Scaling and Load Balancing</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#create-a-load-balancer">
+   Create a Load Balancer
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#set-up-an-auto-scaling-group">
+   Set Up an Auto Scaling Group
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -417,9 +464,106 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="azure">
-<h1>Azure<a class="headerlink" href="#azure" title="Permalink to this headline">#</a></h1>
-<p>tbd</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="auto-scaling-and-load-balancing">
+<h1>Auto Scaling and Load Balancing<a class="headerlink" href="#auto-scaling-and-load-balancing" title="Permalink to this headline">#</a></h1>
+<section id="create-a-load-balancer">
+<h2>Create a Load Balancer<a class="headerlink" href="#create-a-load-balancer" title="Permalink to this headline">#</a></h2>
+<ol>
+<li><p>First, create two other subnets in the same VPC to host the other 2 instances. Get the Availability Zone (AZ) where the current subnet exists. Then, ensure that the other two subnets are in different AZs. Note down the subnet IDs produced from the following commands.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>INSTID=i-xxxxxxxxxxxxxxxxx
+VPCID=$(aws ec2 describe-instances --instance-ids $INSTID --query &quot;Reservations[*].Instances[*].VpcId&quot; --output text)
+SUBNETID=$(aws ec2 describe-instances --instance-ids $INSTID --query &quot;Reservations[*].Instances[*].SubnetId&quot; --output text)
+echo $(aws ec2 describe-subnets --subnet-ids $SUBNETID --query &quot;Subnets[*].AvailabilityZone&quot; --output text)
+aws ec2 create-subnet --vpc-id $VPCID --cidr-block $CIDRBLK2 --availability-zone us-east-1a
+aws ec2 create-subnet --vpc-id $VPCID --cidr-block $CIDRBLK3 --availability-zone us-east-1b
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SUBNETID2</span><span class="o">=</span><span class="n">subnet</span><span class="o">-</span><span class="n">xxxxxxxxxxxxxxxxx</span>
+<span class="n">SUBNETID3</span><span class="o">=</span><span class="n">subnet</span><span class="o">-</span><span class="n">yyyyyyyyyyyyyyyyy</span>
+</pre></div>
+</div>
+<p><strong>NOTE</strong>: Ensure that the route table and network ACL associated with all the subnets are the same.</p>
+</li>
+<li><p>Create target group. Note down the target group ARN output by the command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>TARGETGRP=LlmGpt4allFastapiTargetGrp
+aws elbv2 create-target-group --name $TARGETGRP --protocol HTTP --port 8080 --vpc-id $VPCID
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TARGETGRPARN</span><span class="o">=</span><span class="n">arn</span><span class="p">:</span><span class="n">aws</span><span class="p">:</span><span class="n">elasticloadbalancing</span><span class="p">:</span><span class="n">us</span><span class="o">-</span><span class="n">east</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="o">&lt;</span><span class="n">aws_account_id</span><span class="o">&gt;</span><span class="p">:</span><span class="n">targetgroup</span><span class="o">/</span><span class="n">LlmGpt4allFastapiTargetGrp</span><span class="o">/</span><span class="n">xxxxxxxxxxxxxxxx</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create load balancer. Note down the DNS name and ARN of the load balancer.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>LBNAME=LlmGpt4allFastapiLB
+aws elbv2 create-load-balancer --name $LBNAME --subnets $SUBNETID $SUBNETID2 $SUBNETID3 --type application
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LBARN</span><span class="o">=</span><span class="n">arn</span><span class="p">:</span><span class="n">aws</span><span class="p">:</span><span class="n">elasticloadbalancing</span><span class="p">:</span><span class="n">us</span><span class="o">-</span><span class="n">east</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="o">&lt;</span><span class="n">aws_account_id</span><span class="o">&gt;</span><span class="p">:</span><span class="n">loadbalancer</span><span class="o">/</span><span class="n">app</span><span class="o">/</span><span class="n">LlmGpt4allFastapiLB</span><span class="o">/</span><span class="n">xxxxxxxxxxxxxxxx</span>
+<span class="n">LBDNS</span><span class="o">=</span><span class="n">LlmGpt4allFastapiLB</span><span class="o">-</span><span class="n">xxxxxxxxx</span><span class="o">.</span><span class="n">us</span><span class="o">-</span><span class="n">east</span><span class="o">-</span><span class="mf">1.</span><span class="n">elb</span><span class="o">.</span><span class="n">amazonaws</span><span class="o">.</span><span class="n">com</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create a listener for incoming requests.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>aws elbv2 create-listener --load-balancer-arn $LBARN --protocol HTTP --port 8080 --default-actions Type=forward,TargetGroupArn=$TARGETGRPARN
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="set-up-an-auto-scaling-group">
+<h2>Set Up an Auto Scaling Group<a class="headerlink" href="#set-up-an-auto-scaling-group" title="Permalink to this headline">#</a></h2>
+<ol>
+<li><p>Get the instance id of the EC2 instance set up in the previous guide, and create a custom AMI based on this instance. Note down the AMI id output from this command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>aws ec2 create-image --instance-id $INSTID --name &quot;LlmGpt4allFastapiAMI&quot; --description &quot;AMI with container serving GPT4All LLM via FastAPI.&quot;
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AMIID</span><span class="o">=</span><span class="n">ami</span><span class="o">-</span><span class="n">yyyyyyyyyyyyyyyyy</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create launch configuration.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>LAUNCHCFG=LlmGpt4allFastapiLC
+INSTTYPE=c5a.4xlarge
+KEYNAME=LlmGpt4allFastapiKeyPair
+GRPNAME=LlmGpt4allFastapiSecurityGroup
+aws autoscaling create-launch-configuration --launch-configuration-name $LAUNCHCFG --image-id $AMIID --instance-type $INSTTYPE --key-name $KEYNAME --security-groups $GRPNAME
+</pre></div>
+</div>
+</li>
+<li><p>Create an EC2 Auto Scaling Group (ASG).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>ASGNAME=LlmGpt4allFastapiASG
+MINCAP=0
+MAXCAP=3
+DESIREDCAP=2
+SUBNETID=$(aws ec2 describe-instances --instance-ids $INSTID --query &quot;Reservations[*].Instances[*].SubnetId&quot; --output text)
+aws autoscaling create-auto-scaling-group --auto-scaling-group-name $ASGNAME --launch-configuration-name $LAUNCHCFG --min-size $MINCAP --max-size $MAXCAP --desired-capacity $DESIREDCAP --vpc-zone-identifier $SUBNETID
+</pre></div>
+</div>
+</li>
+<li><p>Define scale out and scale in policies. Note down the ARNs of the policies from the outputs of the following commands.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>SOPOL=LlmGpt4allFastapiSOPolicy
+SIPOL=LlmGpt4allFastapiSIPolicy
+aws autoscaling put-scaling-policy --auto-scaling-group-name $ASGNAME --policy-name $SOPOL --scaling-adjustment 1 --adjustment-type ChangeInCapacity
+aws autoscaling put-scaling-policy --auto-scaling-group-name $ASGNAME --policy-name $SIPOL --scaling-adjustment -1 --adjustment-type ChangeInCapacity
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SOPOLARN</span><span class="o">=</span><span class="n">arn</span><span class="p">:</span><span class="n">aws</span><span class="p">:</span><span class="n">autoscaling</span><span class="p">:</span><span class="n">us</span><span class="o">-</span><span class="n">east</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="o">&lt;</span><span class="n">aws_account_id</span><span class="o">&gt;</span><span class="p">:</span><span class="n">scalingPolicy</span><span class="p">:</span><span class="o">&lt;</span><span class="n">xxxxxxxx</span><span class="o">-</span><span class="n">xxxx</span><span class="o">-</span><span class="n">xxxx</span><span class="o">-</span><span class="n">xxxx</span><span class="o">-</span><span class="n">xxxxxxxxxxxx</span><span class="p">:</span><span class="n">autoScalingGroupName</span><span class="o">/</span><span class="n">LlmGpt4allFastapiASG</span><span class="p">:</span><span class="n">policyName</span><span class="o">/</span><span class="n">LlmGpt4allFastapiSOPolicy</span>
+<span class="n">SIPOLARN</span><span class="o">=</span><span class="n">arn</span><span class="p">:</span><span class="n">aws</span><span class="p">:</span><span class="n">autoscaling</span><span class="p">:</span><span class="n">us</span><span class="o">-</span><span class="n">east</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="o">&lt;</span><span class="n">aws_account_id</span><span class="o">&gt;</span><span class="p">:</span><span class="n">scalingPolicy</span><span class="p">:</span><span class="o">&lt;</span><span class="n">yyyyyyyy</span><span class="o">-</span><span class="n">yyyy</span><span class="o">-</span><span class="n">yyyy</span><span class="o">-</span><span class="n">yyyy</span><span class="o">-</span><span class="n">yyyyyyyyyyyy</span><span class="p">:</span><span class="n">autoScalingGroupName</span><span class="o">/</span><span class="n">LlmGpt4allFastapiASG</span><span class="p">:</span><span class="n">policyName</span><span class="o">/</span><span class="n">LlmGpt4allFastapiSIPolicy</span>
+</pre></div>
+</div>
+</li>
+<li><p>Attach load balancer.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>aws autoscaling attach-load-balancer-target-groups --auto-scaling-group-name $ASGNAME --target-group-arns $TARGETGRPARN
+</pre></div>
+</div>
+</li>
+<li><p>Update capacity as follows.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>aws autoscaling attach-load-balancer-target-groups --auto-scaling-group-name $ASGNAME --target-group-arns $TARGETGRPARN
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -435,7 +579,7 @@ title="Print to PDF"
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./model-deployment/azure"
+            path: "./model-deployment/aws"
         },
         predefinedOutput: true
     }
@@ -449,17 +593,17 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../aws/llm-gpt4all-fastapi-autoscaling.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="llm-gpt4all-fastapi.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Auto Scaling and Load Balancing</p>
+            <p class="prev-next-title">Large Language Model (LLM) via FastAPI</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="../gcp/intro.html" title="next page">
+    <a class='right-next' id="next-link" href="../azure/intro.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Google Cloud Platform</p>
+        <p class="prev-next-title">Azure</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
