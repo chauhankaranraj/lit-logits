@@ -1,6 +1,6 @@
-# Large Language Model (LLM) via FastAPI on ECS
+# Large Language Model (LLM) on ECS
 
-If you'd rather AWS manage the scaling and provisioning of resources instead of hand-managing an EC2 instance, then you can consider using Elastic Container Service (ECS) for dpeloying your LLM.
+This guide explains how to create a model serving endpoint for an LLM (think, ChatGPT-like models) by setting up a FastAPI server on ECS. This option is ideal if you'd rather AWS manage the scaling and provisioning of resources instead of hand-managing an EC2 instance.
 
 NOTE: we'll be using the image creating in the [previous guide](./llm-gpt4all-fastapi#package-the-service-into-a-container-image).
 

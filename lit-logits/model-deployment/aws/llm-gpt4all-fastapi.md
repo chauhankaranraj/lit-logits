@@ -1,4 +1,6 @@
-# Large Language Model (LLM) via FastAPI on EC2
+# Large Language Model (LLM) on EC2
+
+This guide explains how to create a model serving endpoint for an LLM (think, ChatGPT-like models) by setting up a FastAPI server on EC2.
 
 ## Package the Service into a Container Image
 
