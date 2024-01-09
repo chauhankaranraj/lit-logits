@@ -1,4 +1,4 @@
-# Large Language Model (LLM) via FastAPI
+# Large Language Model (LLM) via FastAPI on EC2
 
 ## Package the Service into a Container Image
 

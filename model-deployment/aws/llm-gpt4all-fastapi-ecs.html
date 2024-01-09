@@ -1,0 +1,726 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Large Language Model (LLM) via FastAPI on ECS &#8212; Lit Logits</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Azure" href="../azure/intro.html" />
+    <link rel="prev" title="Auto Scaling and Load Balancing" href="llm-gpt4all-fastapi-autoscaling.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Lit Logits</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../README.html">
+                    Lit Logits
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Setup
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../personal-workspace/remote-desktop-instance.html">
+   Remote Desktop Instance
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../personal-workspace/working-environment.html">
+   Working Environment
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Data Exploration
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../exploratory-data-analysis/intro.html">
+   Overview
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../exploratory-data-analysis/data-distribution/intro.html">
+   Data Distribution
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../exploratory-data-analysis/data-distribution/anderson-darling-test.html">
+     Anderson Darling Test
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../exploratory-data-analysis/data-distribution/kolmogorov-smirnov-test.html">
+     Kolmogorov Smirnov Test
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Model Training
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../deep-learning/intro.html">
+   Deep Learning
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../deep-learning/generative-adversarial-networks/intro.html">
+     Generative Adversarial Networks
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Model Deployment
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="intro.html">
+   AWS
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="classical-fastapi.html">
+     Classical ML Model via FastAPI
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="llm-gpt4all-fastapi.html">
+     Large Language Model (LLM) via FastAPI on EC2
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="llm-gpt4all-fastapi-autoscaling.html">
+       Auto Scaling and Load Balancing
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Large Language Model (LLM) via FastAPI on ECS
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../azure/intro.html">
+   Azure
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../gcp/intro.html">
+   Google Cloud Platform
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../openshift/intro.html">
+   Red Hat OpenShift
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/chauhankaranraj/lit-logits"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/chauhankaranraj/lit-logits/issues/new?title=Issue%20on%20page%20%2Fmodel-deployment/aws/llm-gpt4all-fastapi-ecs.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/model-deployment/aws/llm-gpt4all-fastapi-ecs.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#create-an-execution-role">
+   Create an execution role
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#create-a-subnet-and-security-group">
+   Create a subnet and security group
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#set-up-ecs-task-in-an-ecs-cluster">
+   Set Up ECS task in an ECS cluster
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#auto-scaling-and-load-balancing-work-in-progress">
+   Auto Scaling and Load Balancing [WORK IN PROGRESS]
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Large Language Model (LLM) via FastAPI on ECS</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#create-an-execution-role">
+   Create an execution role
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#create-a-subnet-and-security-group">
+   Create a subnet and security group
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#set-up-ecs-task-in-an-ecs-cluster">
+   Set Up ECS task in an ECS cluster
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#auto-scaling-and-load-balancing-work-in-progress">
+   Auto Scaling and Load Balancing [WORK IN PROGRESS]
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="large-language-model-llm-via-fastapi-on-ecs">
+<h1>Large Language Model (LLM) via FastAPI on ECS<a class="headerlink" href="#large-language-model-llm-via-fastapi-on-ecs" title="Permalink to this headline">#</a></h1>
+<p>If you’d rather AWS manage the scaling and provisioning of resources instead of hand-managing an EC2 instance, then you can consider using Elastic Container Service (ECS) for dpeloying your LLM.</p>
+<p>NOTE: we’ll be using the image creating in the <a class="reference external" href="./llm-gpt4all-fastapi#package-the-service-into-a-container-image">previous guide</a>.</p>
+<section id="create-an-execution-role">
+<h2>Create an execution role<a class="headerlink" href="#create-an-execution-role" title="Permalink to this headline">#</a></h2>
+<p>First, we need to create a role with which ECS will execute tasks.</p>
+<ol>
+<li><p>Create a file called <code class="docutils literal notranslate"><span class="pre">ecs-trust-policy.json</span></code> to define the trust policy as follows.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;Version&quot;</span><span class="p">:</span> <span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Statement&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;Effect&quot;</span><span class="p">:</span> <span class="s2">&quot;Allow&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Principal&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;Service&quot;</span><span class="p">:</span> <span class="s2">&quot;ecs-tasks.amazonaws.com&quot;</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;Action&quot;</span><span class="p">:</span> <span class="s2">&quot;sts:AssumeRole&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create an IAM role. Save the role ARN output by the command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aws</span> <span class="n">iam</span> <span class="n">create</span><span class="o">-</span><span class="n">role</span> <span class="o">--</span><span class="n">role</span><span class="o">-</span><span class="n">name</span> <span class="n">EcsExecutionRole</span> <span class="o">--</span><span class="n">assume</span><span class="o">-</span><span class="n">role</span><span class="o">-</span><span class="n">policy</span><span class="o">-</span><span class="n">document</span> <span class="n">file</span><span class="p">:</span><span class="o">//</span><span class="n">ecs</span><span class="o">-</span><span class="n">trust</span><span class="o">-</span><span class="n">policy</span><span class="o">.</span><span class="n">json</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ECSEXECROLEARN</span><span class="o">=</span><span class="n">arn</span><span class="p">:</span><span class="n">aws</span><span class="p">:</span><span class="n">iam</span><span class="p">::</span><span class="o">&lt;</span><span class="n">aws_account_id</span><span class="o">&gt;</span><span class="p">:</span><span class="n">role</span><span class="o">/</span><span class="n">EcsExecutionRole</span>
+</pre></div>
+</div>
+</li>
+<li><p>Attach the required policy to the role created above.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aws</span> <span class="n">iam</span> <span class="n">attach</span><span class="o">-</span><span class="n">role</span><span class="o">-</span><span class="n">policy</span> <span class="o">--</span><span class="n">role</span><span class="o">-</span><span class="n">name</span> <span class="n">EcsExecutionRole</span> <span class="o">--</span><span class="n">policy</span><span class="o">-</span><span class="n">arn</span> <span class="n">arn</span><span class="p">:</span><span class="n">aws</span><span class="p">:</span><span class="n">iam</span><span class="p">::</span><span class="n">aws</span><span class="p">:</span><span class="n">policy</span><span class="o">/</span><span class="n">service</span><span class="o">-</span><span class="n">role</span><span class="o">/</span><span class="n">AmazonECSTaskExecutionRolePolicy</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="create-a-subnet-and-security-group">
+<h2>Create a subnet and security group<a class="headerlink" href="#create-a-subnet-and-security-group" title="Permalink to this headline">#</a></h2>
+<p>Next, we need to create a subnet within which the ECS containers will live. We also need to create a security group to define network access rules.</p>
+<ol>
+<li><p>Create subnet by running the following. Make sure that the subnet CIDR block is not something that’s already in use by another resource. Note down the subnet ID output from the command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>VPCID=vpc-xxxxxxxxxxxxxxxxx
+SUBNETCIDR=172.31.144.0/20
+AZ=us-east-1f
+aws ec2 create-subnet --vpc-id $VPCID --cidr-block $SUBNETCIDR --availability-zone AZ
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ECSSUBNETID</span><span class="o">=</span><span class="n">subnet</span><span class="o">-</span><span class="n">xxxxxxxxxxxxxxxxx</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create security group. Note down the security group ID output by the command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>GRPNAME=LlmGpt4allFastapiEcsSecurityGroup
+aws ec2 create-security-group --group-name $GRPNAME --description &quot;SG for GPT4All LLM deployment on ECS&quot; --vpc-id $VPCID
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ECSSGID</span><span class="o">=</span><span class="n">sg</span><span class="o">-</span><span class="n">xxxxxxxxxxxxxxxxx</span>
+</pre></div>
+</div>
+</li>
+<li><p>Allow list current device (or the set of target devices) to access the ECS containers at the specified port.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>PUBLICIP=$(curl ipinfo.io/ip)
+aws ec2 authorize-security-group-ingress --group-id $ECSSGID --protocol tcp --port 8080 --cidr $PUBLICIP/32
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="set-up-ecs-task-in-an-ecs-cluster">
+<h2>Set Up ECS task in an ECS cluster<a class="headerlink" href="#set-up-ecs-task-in-an-ecs-cluster" title="Permalink to this headline">#</a></h2>
+<p>Finally, we will set up a cluster and create a task i.e. running containers.</p>
+<ol>
+<li><p>Create an ECS cluster.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>CLUSTERNAME=LlmGpt4allFastapiEcsCluster
+aws ecs create-cluster --cluster-name $CLUSTERNAME
+</pre></div>
+</div>
+</li>
+<li><p>Create a <code class="docutils literal notranslate"><span class="pre">task-definition.yaml</span></code> file with the following content.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">family</span><span class="p">:</span> <span class="s2">&quot;llm-gpt4all-ecs-server&quot;</span>
+<span class="n">networkMode</span><span class="p">:</span> <span class="s2">&quot;awsvpc&quot;</span>
+<span class="n">requiresCompatibilities</span><span class="p">:</span>
+<span class="o">-</span> <span class="s2">&quot;FARGATE&quot;</span>
+<span class="n">cpu</span><span class="p">:</span> <span class="s2">&quot;16384&quot;</span>
+<span class="n">memory</span><span class="p">:</span> <span class="s2">&quot;65536&quot;</span>
+<span class="n">executionRoleArn</span><span class="p">:</span> <span class="s2">&quot;arn:aws:iam::&lt;aws_account_id&gt;:role/EcsExecutionRole&quot;</span>
+<span class="n">containerDefinitions</span><span class="p">:</span>
+<span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">llm</span><span class="o">-</span><span class="n">gpt4all</span><span class="o">-</span><span class="n">container</span>
+    <span class="n">image</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">aws_account_id</span><span class="o">&gt;.</span><span class="n">dkr</span><span class="o">.</span><span class="n">ecr</span><span class="o">.</span><span class="n">us</span><span class="o">-</span><span class="n">east</span><span class="o">-</span><span class="mf">1.</span><span class="n">amazonaws</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">llm</span><span class="o">-</span><span class="n">gpt4all</span><span class="o">-</span><span class="n">fastapi</span><span class="o">-</span><span class="n">demo</span><span class="p">:</span><span class="n">latest</span>
+    <span class="n">cpu</span><span class="p">:</span> <span class="mi">16384</span>
+    <span class="n">memory</span><span class="p">:</span> <span class="mi">65536</span>
+    <span class="n">portMappings</span><span class="p">:</span>
+    <span class="o">-</span> <span class="n">containerPort</span><span class="p">:</span> <span class="mi">8080</span>
+    <span class="n">essential</span><span class="p">:</span> <span class="n">true</span>
+</pre></div>
+</div>
+</li>
+<li><p>Register the task definiton created in the above file. Note down the task ARN output by the command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aws</span> <span class="n">ecs</span> <span class="n">register</span><span class="o">-</span><span class="n">task</span><span class="o">-</span><span class="n">definition</span> <span class="o">--</span><span class="n">cli</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="n">yaml</span> <span class="n">file</span><span class="p">:</span><span class="o">//</span><span class="n">task</span><span class="o">-</span><span class="n">definition</span><span class="o">.</span><span class="n">yaml</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ECSTASKARN</span><span class="o">=</span><span class="n">arn</span><span class="p">:</span><span class="n">aws</span><span class="p">:</span><span class="n">ecs</span><span class="p">:</span><span class="n">us</span><span class="o">-</span><span class="n">east</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="o">&lt;</span><span class="n">aws_account_id</span><span class="o">&gt;</span><span class="p">:</span><span class="n">task</span><span class="o">/</span><span class="n">LlmGpt4allFastapiEcsCluster</span><span class="o">/</span><span class="n">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create a service, using the subnets and security groups created in the <a class="reference external" href="#create-a-subnet-and-security-group">previous section</a>. Note down the service ARN output by the command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>SVCNAME=llm-gpt4all-fastapi-svc
+aws ecs create-service \
+--cluster $CLUSTERNAME \
+--service-name $SVCNAME \
+--task-definition llm-gpt4all-ecs-server \
+--desired-count 1 \
+--launch-type FARGATE \
+--network-configuration &quot;awsvpcConfiguration={subnets=[$ECSSUBNETID],securityGroups=[$ECSSGID],assignPublicIp=ENABLED}&quot;
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ECSSVCARN</span><span class="o">=</span><span class="n">arn</span><span class="p">:</span><span class="n">aws</span><span class="p">:</span><span class="n">ecs</span><span class="p">:</span><span class="n">us</span><span class="o">-</span><span class="n">east</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="o">&lt;</span><span class="n">aws_account_id</span><span class="o">&gt;</span><span class="p">:</span><span class="n">service</span><span class="o">/</span><span class="n">LlmGpt4allFastapiEcsCluster</span><span class="o">/</span><span class="n">llm</span><span class="o">-</span><span class="n">gpt4all</span><span class="o">-</span><span class="n">fastapi</span><span class="o">-</span><span class="n">svc</span>
+</pre></div>
+</div>
+</li>
+<li><p>You’re all set! Ping the service from one of the allow-listed devices to see it in action.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>ENIID=eni-08843015452dd4218
+SVCPUBLICIP=$(aws ec2 describe-network-interfaces --network-interface-ids $ENIID --query &#39;NetworkInterfaces[*].Association.PublicIp&#39; --output text)
+</pre></div>
+</div>
+</section>
+<section id="auto-scaling-and-load-balancing-work-in-progress">
+<h2>Auto Scaling and Load Balancing [WORK IN PROGRESS]<a class="headerlink" href="#auto-scaling-and-load-balancing-work-in-progress" title="Permalink to this headline">#</a></h2>
+<ol>
+<li><p>set up asg</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>aws application-autoscaling register-scalable-target \
+--service-namespace ecs \
+--resource-id service/$CLUSTERNAME/$SVCNAME \
+--scalable-dimension ecs:service:DesiredCount \
+--min-capacity 0 \
+--max-capacity 3
+</pre></div>
+</div>
+</li>
+<li><p>add policy</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    aws application-autoscaling put-scaling-policy \
+    --policy-name fastapi-demo-cpu-scaling \
+    --service-namespace ecs \
+    --resource-id service/$CLUSTERNAME/$SVCNAME \
+    --scalable-dimension ecs:service:DesiredCount \
+    --policy-type TargetTrackingScaling \
+    --target-tracking-scaling-policy-configuration &quot;{
+        \&quot;PredefinedMetricSpecification\&quot;: {
+            \&quot;PredefinedMetricType\&quot;: \&quot;ECSServiceAverageCPUUtilization\&quot;
+        },
+        \&quot;TargetValue\&quot;: 5.0,
+        \&quot;ScaleInCooldown\&quot;: 60,
+        \&quot;ScaleOutCooldown\&quot;: 60
+    }&quot;
+</pre></div>
+</div>
+<p>NOTE: The above policy creates CloudWatch alarms with actions associated with them. You don’t get granular control over the definition of these alarms from the <code class="docutils literal notranslate"><span class="pre">application-autoscaling</span></code> command. For example, if you want to scale in based on 10 data points in 10 minutes, you cannot set it in the above command.</p>
+<ol class="simple">
+<li><p>Add load balancer at the front.</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./model-deployment/aws"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="llm-gpt4all-fastapi-autoscaling.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Auto Scaling and Load Balancing</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../azure/intro.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Azure</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Karanraj Chauhan<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
