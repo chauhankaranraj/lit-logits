@@ -1,4 +1,6 @@
-# Classical ML Model via FastAPI
+# Classical ML Model on EC2
+
+This guide explains how to create a model serving endpoint by setting up a FastAPI server on EC2.
 
 1. Follow steps [here](../../personal-workspace/remote-desktop-instance#aws) to launch an EC2 instance and SSH into it. NOTE: this time you can choose a smaller instance type (e.g. `c7a.medium`) since this is for demo purposes only.
 

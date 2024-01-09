@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Large Language Model (LLM) via FastAPI on ECS &#8212; Lit Logits</title>
+    <title>Large Language Model (LLM) on ECS &#8212; Lit Logits</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -201,12 +201,12 @@ const thebe_selector_output = ".output, .cell_output"
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="classical-fastapi.html">
-     Classical ML Model via FastAPI
+     Classical ML Model on EC2
     </a>
    </li>
    <li class="toctree-l2 has-children">
     <a class="reference internal" href="llm-gpt4all-fastapi.html">
-     Large Language Model (LLM) via FastAPI on EC2
+     Large Language Model (LLM) on EC2
     </a>
     <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
     <label for="toctree-checkbox-4">
@@ -223,7 +223,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Large Language Model (LLM) via FastAPI on ECS
+     Large Language Model (LLM) on ECS
     </a>
    </li>
   </ul>
@@ -449,7 +449,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Large Language Model (LLM) via FastAPI on ECS</h1>
+                <h1>Large Language Model (LLM) on ECS</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -489,9 +489,9 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="large-language-model-llm-via-fastapi-on-ecs">
-<h1>Large Language Model (LLM) via FastAPI on ECS<a class="headerlink" href="#large-language-model-llm-via-fastapi-on-ecs" title="Permalink to this headline">#</a></h1>
-<p>If you’d rather AWS manage the scaling and provisioning of resources instead of hand-managing an EC2 instance, then you can consider using Elastic Container Service (ECS) for dpeloying your LLM.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="large-language-model-llm-on-ecs">
+<h1>Large Language Model (LLM) on ECS<a class="headerlink" href="#large-language-model-llm-on-ecs" title="Permalink to this headline">#</a></h1>
+<p>This guide explains how to create a model serving endpoint for an LLM (think, ChatGPT-like models) by setting up a FastAPI server on ECS. This option is ideal if you’d rather AWS manage the scaling and provisioning of resources instead of hand-managing an EC2 instance.</p>
 <p>NOTE: we’ll be using the image creating in the <a class="reference external" href="./llm-gpt4all-fastapi#package-the-service-into-a-container-image">previous guide</a>.</p>
 <section id="create-an-execution-role">
 <h2>Create an execution role<a class="headerlink" href="#create-an-execution-role" title="Permalink to this headline">#</a></h2>
